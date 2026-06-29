@@ -2,7 +2,7 @@ header {
     background-color: #000000;
     color: #ffffff;
     text-align: center;
-    max-width: 800px;
+    max-width: 3000px;
     margin: 0 auto;
     padding: 16px;
     }
@@ -10,4 +10,11 @@ header {
 img {
         width: 80px;
         height: 80px;
+        }
+
+body {
+            background-color: #0c0c0c;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
         }
