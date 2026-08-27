@@ -1,29 +1,1533 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OPnet - Cybersecurity</title>
-    <meta name="description" content="a social media with a threme of cybersecurity..">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <img src="opseccyber.png" alt="cybersecurity image representation">
 
-    </header>
+    <title>CSHUB - Comunidade CS2</title>
+    <div class="create-box">
+
+        <div class="avatar">
+            GS
+        </div>
+
+        <div
+            id="createInput"
+            class="create-input">
+
+   const createInput =
+    document.getElementById("createInput");
+
+const createPostButton =
+    document.getElementById("createPostButton");         O que você quer compartilhar com a comunidade?
+
+        </div>
+
+        <button
+            id="createPostButton"
+            class="create-post-button">
+
+            Criar post
+
+        </button>
+
+    </div>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #101216;
+            color: white;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================
+           BARRA SUPERIOR
+        ========================= */
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 70px;
+
+            background: #171a20;
+            border-bottom: 1px solid #292d35;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 25px;
+
+            z-index: 1000;
+        }
+
+        .top-left,
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            position: absolute;
+
+            left: 50%;
+            transform: translateX(-50%);
+
+            font-size: 25px;
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            color: #f0a500;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .top-button {
+            width: 43px;
+            height: 43px;
+
+            border: none;
+            border-radius: 9px;
+
+            background: #20242c;
+            color: #ddd;
+
+            font-size: 21px;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .top-button:hover {
+            background: #2c313b;
+            color: #f0a500;
+        }
+
+        /* =========================
+           MENU LATERAL
+        ========================= */
+
+        .side-menu {
+            position: fixed;
+
+            top: 70px;
+            left: -290px;
+
+            width: 290px;
+            height: calc(100vh - 70px);
+
+            background: #171a20;
+
+            border-right: 1px solid #292d35;
+
+            padding: 25px;
+
+            transition: .3s;
+
+            z-index: 900;
+        }
+
+        .side-menu.active {
+            left: 0;
+        }
+
+        .side-menu h2 {
+            margin-bottom: 25px;
+            color: #f0a500;
+        }
+
+        .menu-item {
+            width: 100%;
+
+            padding: 14px;
+
+            margin-bottom: 7px;
+
+            background: transparent;
+
+            border: none;
+            border-radius: 8px;
+
+            color: #aaa;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .menu-item:hover {
+            background: #242832;
+            color: white;
+        }
+
+        /* =========================
+           PERFIL
+        ========================= */
+
+        .profile-menu {
+            position: fixed;
+
+            top: 80px;
+            right: 20px;
+
+            width: 280px;
+
+            background: #191c22;
+
+            border: 1px solid #30343d;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            display: none;
+
+            z-index: 1500;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,.5);
+        }
+
+        .profile-menu.active {
+            display: block;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            background: #f0a500;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #111;
+
+            font-weight: bold;
+        }
+
+        .profile-name {
+            font-weight: bold;
+        }
+
+        .profile-status {
+            color: #65d681;
+
+            font-size: 12px;
+
+            margin-top: 4px;
+        }
+
+        .profile-info {
+            border-top: 1px solid #30343d;
+            border-bottom: 1px solid #30343d;
+
+            padding: 15px 0;
+
+            margin-bottom: 15px;
+
+            line-height: 1.8;
+
+            color: #aaa;
+
+            font-size: 13px;
+        }
+
+        .profile-button {
+            width: 100%;
+
+            padding: 12px;
+
+            border: none;
+            border-radius: 7px;
+
+            background: #f0a500;
+
+            color: #111;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        /* =========================
+           NOTIFICAÇÕES
+        ========================= */
+
+        .notification-panel {
+            position: fixed;
+
+            top: 80px;
+            right: 75px;
+
+            width: 330px;
+
+            background: #191c22;
+
+            border: 1px solid #30343d;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            display: none;
+
+            z-index: 1500;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,.5);
+        }
+
+        .notification-panel.active {
+            display: block;
+        }
+
+        .notification-panel h3 {
+            margin-bottom: 15px;
+        }
+
+        .notification {
+            background: #232730;
+
+            padding: 13px;
+
+            border-radius: 8px;
+
+            margin-bottom: 8px;
+
+            font-size: 13px;
+
+            color: #ccc;
+        }
+
+        .notification strong {
+            color: #f0a500;
+        }
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
+        .content {
+            max-width: 800px;
+
+            margin: 100px auto 50px;
+
+            padding: 0 20px;
+        }
+
+        /* =========================
+           CRIAR POST
+        ========================= */
+
+        .create-box {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            background: #191c22;
+
+            border: 1px solid #292d35;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .create-input {
+            flex: 1;
+
+            background: #232730;
+
+            padding: 13px;
+
+            border-radius: 8px;
+
+            color: #888;
+
+            cursor: pointer;
+        }
+
+        .create-post-button {
+            background: #f0a500;
+
+            color: #111;
+
+            border: none;
+
+            padding: 12px 18px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        /* =========================
+           POST
+        ========================= */
+
+        .post {
+            background: #191c22;
+
+            border: 1px solid #292d35;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            margin-bottom: 20px;
+        }
+
+        .post-header {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 18px;
+        }
+
+        .post-avatar {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: #303640;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+        .post-user {
+            font-weight: bold;
+        }
+
+        .post-time {
+            color: #777;
+
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+        .post-content {
+            padding: 0 18px 18px;
+        }
+
+        .post-title {
+            margin-bottom: 10px;
+
+            font-size: 20px;
+        }
+
+        .post-description {
+            color: #aaa;
+
+            line-height: 1.5;
+        }
+
+        .tags {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: #292e37;
+
+            color: #f0a500;
+
+            padding: 5px 9px;
+
+            border-radius: 5px;
+
+            font-size: 12px;
+        }
+
+        .post-media {
+            width: 100%;
+
+            max-height: 500px;
+
+            object-fit: cover;
+
+            display: block;
+
+            margin-top: 15px;
+        }
+
+        .post-actions {
+            display: flex;
+
+            gap: 20px;
+
+            padding: 12px 18px;
+
+            border-top: 1px solid #292d35;
+        }
+
+        .action {
+            background: none;
+
+            border: none;
+
+            color: #999;
+
+            cursor: pointer;
+        }
+
+        .action:hover {
+            color: #f0a500;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal-background {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,.75);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 3000;
+        }
+
+        .modal-background.active {
+            display: flex;
+        }
+
+        .post-modal {
+            width: 100%;
+            max-width: 650px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: #191c22;
+
+            border: 1px solid #30343d;
+
+            border-radius: 14px;
+
+            padding: 25px;
+        }
+
+        .modal-title {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .modal-title h2 {
+            font-size: 21px;
+        }
+
+        .close {
+            border: none;
+
+            background: none;
+
+            color: #aaa;
+
+            font-size: 28px;
+
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #aaa;
+
+            font-size: 13px;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+
+            padding: 13px;
+
+            background: #232730;
+
+            border: 1px solid #30343d;
+
+            border-radius: 8px;
+
+            color: white;
+
+            outline: none;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: #f0a500;
+        }
+
+        .form-textarea {
+            height: 130px;
+
+            resize: vertical;
+        }
+
+        .upload-area {
+            display: block;
+
+            border: 2px dashed #383e49;
+
+            border-radius: 10px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            color: #888;
+
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #f0a500;
+
+            color: white;
+        }
+
+        .publish-button {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #f0a500;
+
+            color: #111;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .publish-button:hover {
+            background: #ffb51b;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media(max-width: 600px) {
+
+            .topbar {
+                padding: 0 10px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .top-button {
+                width: 38px;
+                height: 38px;
+            }
+
+            .content {
+                margin-top: 90px;
+            }
+
+            .notification-panel {
+                right: 10px;
+
+                width: calc(100% - 20px);
+            }
+
+            .profile-menu {
+                right: 10px;
+            }
+
+            .create-post-button {
+                display: none;
+            }
+        }
+
+.profile-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-weight: bold;
+}
+
+.edit-nickname {
+    border: none;
+    background: transparent;
+
+    color: #888;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    padding: 2px 4px;
+
+    border-radius: 4px;
+}
+
+.edit-nickname:hover {
+    color: #f0a500;
+    background: #292e37;
+}
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     BARRA
+========================= -->
+
+<header class="topbar">
+
+    <div class="top-left">
+
+        <button
+            id="menuButton"
+            class="top-button">
+
+            ☰
+
+        </button>
+
+    </div>
+
+
+    <div class="logo">
+
+        CS<span>HUB</span>
+
+    </div>
+
+
+    <div class="top-right">
+
+        <button
+    id="plusButton"
+    class="top-button">
+    +
+</button>
+
+<button
+    id="notificationButton"
+    class="top-button">
+    🔔
+</button>
+
+<button
+    id="profileButton"
+    class="top-button">
+    👤
+</button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MENU
+========================= -->
+
+<aside
+    id="sideMenu"
+    class="side-menu">
+
+    <h2>CSHUB</h2>
+
+    <button class="menu-item">
+        🏠 Página inicial
+    </button>
+
+    <button class="menu-item">
+        🔥 Em alta
+    </button>
+
+    <button class="menu-item">
+        🎯 Estratégias
+    </button>
+
+    <button class="menu-item">
+        🏆 Campeonatos
+    </button>
+
+    <button class="menu-item">
+        👥 Comunidade
+    </button>
+
+    <button class="menu-item">
+        ⚙️ Configurações
+    </button>
+
+    <button class="menu-item">
+        ❓ Suporte
+    </button>
+
+</aside>
+
+
+<!-- =========================
+     PERFIL
+========================= -->
+
 <div
-    class="nb-wrap"><nav class="nb-nav"><a class="nb-logo" href="/" dTata-discover="true"><span class="nb-logo-text">OPnet</span></a><ul class="nb-links nb-desktop"><li><a class="nb-link nb-link--active" href="/" data-discover="true">Home</a></li><li><a class="nb-link" href="/features" data-discover="true">Features</a></li><li><a class="nb-link" href="/pricing" data-discover="true">Pricing</a></li><li><a class="nb-link" href="/sobre" data-discover="true">Sobre</a></li><li><a class="nb-link" href="/contato" data-discover="true">Contato</a></li></ul><div class="nb-right nb-desktop"><a class="nb-login" href="/login" data-discover="true">Login</a><a class="nb-logout" href="/register" data-discover="true">Register</a></div><div class="nb-mobile-right nb-mobile-only"><button class="nb-burger"><span class="nb-burger-line"></span><span class="nb-burger-line"></span><span class="nb-burger-line"></span></button></div></nav>
+    id="profileMenu"
+    class="profile-menu">
+
+    <div class="profile-header">
+
+        <div class="avatar">
+            GS
+        </div>
+
+        <div>
+
+        <div class="profile-name">
+
+    <span id="nickname">
+        Gustavo
+    </span>
+
+    <button
+        id="editNickname"
+        class="edit-nickname"
+        title="Alterar nickname">
+
+        ✎
+
+    </button>
+
+         </div>
+
+            <div class="profile-status">
+                ● Online
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="profile-info">
+
+        🎮 Level: 27<br>
+        🏆 Rank: Global Elite<br>
+        👥 Seguidores: 348<br>
+        📝 Posts: 72
+
+    </div>
+
+
+    <button
+        id="fullProfileButton"
+        class="profile-button">
+
+        Ver perfil inteiro
+
+    </button>
+
 </div>
-    <button>🧱<span>0</span></button>
+
+
+<!-- =========================
+     NOTIFICAÇÕES
+========================= -->
+
+<div
+    id="notificationPanel"
+    class="notification-panel">
+
+    <h3>Notificações</h3>
+
+    <div class="notification">
+        <strong>Lucas</strong> curtiu seu post.
+    </div>
+
+    <div class="notification">
+        <strong>Marcos</strong> começou a seguir você.
+    </div>
+
+    <div class="notification">
+        Seu post recebeu <strong>15 comentários</strong>.
+    </div>
+
+    <div class="notification">
+        <strong>Team Alpha</strong> publicou uma nova estratégia.
+    </div>
+
+</div>
+
+
+<!-- =========================
+     CONTEÚDO
+========================= -->
+
+<main class="content">
+
+    <!-- POST -->
+
+    <article class="post">
+
+        <div class="post-header">
+
+            <div class="post-avatar">
+                AL
+            </div>
+
+            <div>
+
+                <div class="post-user">
+                    AlphaPlayer
+                </div>
+
+                <div class="post-time">
+                    há 24 minutos
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="post-content">
+
+            <h2 class="post-title">
+                Nova smoke para Mirage
+            </h2>
+
+            <p class="post-description">
+
+                Descobri uma smoke muito boa para bloquear
+                a visão do CT e facilitar a entrada no bombsite A.
+
+            </p>
+
+
+            <div class="tags">
+
+                <span class="tag">
+                    #Mirage
+                </span>
+
+                <span class="tag">
+                    #Smoke
+                </span>
+
+                <span class="tag">
+                    #Estratégia
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="post-actions">
+
+            <button class="action">
+                ❤️ 124
+            </button>
+
+            <button class="action">
+                💬 18
+            </button>
+
+            <button class="action">
+                🔗 Compartilhar
+            </button>
+
+        </div>
+
+    </article>
+
+
+</main>
+
+
+<!-- =========================
+     MODAL DE POST
+========================= -->
+
+<div
+    id="postModal"
+    class="modal-background">
+
+    <div class="post-modal">
+
+
+        <div class="modal-title">
+
+            <h2>
+                Criar publicação
+            </h2>
+
+            <button
+                id="closeModal"
+                class="close">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Título
+            </label>
+
+            <input
+                id="postTitle"
+                class="form-input"
+                type="text"
+                placeholder="Digite o título da publicação">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Descrição
+            </label>
+
+            <textarea
+                id="postDescription"
+                class="form-textarea"
+                placeholder="Escreva o que você quer compartilhar..."></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Tags
+            </label>
+
+            <input
+                id="postTags"
+                class="form-input"
+                type="text"
+                placeholder="#CS2 #Mirage #Estratégia">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Imagens ou vídeos
+            </label>
+
+            <label class="upload-area">
+
+                📁 Clique para selecionar arquivos
+
+                <input
+                    id="postFiles"
+                    type="file"
+                    accept="image/*,video/*"
+                    multiple
+                    hidden>
+
+            </label>
+
+        </div>
+
+
+        <button
+            id="publishButton"
+            class="publish-button">
+
+            Publicar
+
+        </button>
+
+    </div>
+
+</div>
+
+
 <script>
-    const botao = document.querySelector("button");
-    botao.addEventListener("click", botaoClicado);
-    </script>
-    <function botaoClicado() {
-        console.log("fui clicado");
-        }>
-    </function>
+
+
+/* =========================
+   ELEMENTOS
+========================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const sideMenu =
+    document.getElementById("sideMenu");
+
+const profileButton =
+    document.getElementById("profileButton");
+
+const profileMenu =
+    document.getElementById("profileMenu");
+
+const notificationButton =
+    document.getElementById("notificationButton");
+
+const notificationPanel =
+    document.getElementById("notificationPanel");
+
+const plusButton =
+    document.getElementById("plusButton");
+
+const postModal =
+    document.getElementById("postModal");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+const publishButton =
+    document.getElementById("publishButton");
+
+
+/* =========================
+   MENU
+========================= */
+
+menuButton.addEventListener("click", function(event) {
+
+    event.stopPropagation();
+
+    sideMenu.classList.toggle("active");
+
+});
+
+
+/* =========================
+   PERFIL
+========================= */
+
+profileButton.addEventListener("click", function(event) {
+
+    event.stopPropagation();
+
+    profileMenu.classList.toggle("active");
+
+    notificationPanel.classList.remove("active");
+
+});
+
+
+/* =========================
+   NOTIFICAÇÕES
+========================= */
+
+notificationButton.addEventListener("click", function(event) {
+
+    event.stopPropagation();
+
+    notificationPanel.classList.toggle("active");
+
+    profileMenu.classList.remove("active");
+
+});
+
+
+/* =========================
+   ABRIR POST
+========================= */
+
+function openPostModal() {
+
+    postModal.classList.add("active");
+
+}
+
+
+plusButton.addEventListener("click", openPostModal);
+
+
+/* =========================
+   FECHAR MODAL
+========================= */
+
+closeModal.addEventListener("click", function() {
+
+    postModal.classList.remove("active");
+
+});
+
+
+/* Clicar no fundo fecha */
+
+postModal.addEventListener("click", function(event) {
+
+    if (event.target === postModal) {
+
+        postModal.classList.remove("active");
+
+    }
+
+});
+
+
+/* =========================
+   PUBLICAR POST
+========================= */
+
+publishButton.addEventListener("click", function() {
+
+    const title =
+        document.getElementById("postTitle").value.trim();
+
+    const description =
+        document.getElementById("postDescription").value.trim();
+
+    const tags =
+        document.getElementById("postTags").value.trim();
+
+    const files =
+        document.getElementById("postFiles").files;
+
+
+    if (!title) {
+
+        alert("Digite um título.");
+
+        return;
+
+    }
+
+
+    if (!description) {
+
+        alert("Digite uma descrição.");
+
+        return;
+
+    }
+
+
+    /* Criar novo post */
+
+    const post =
+        document.createElement("article");
+
+    post.className = "post";
+
+
+    /* Tags */
+
+    let tagsHTML = "";
+
+    if (tags) {
+
+        tags
+            .split(" ")
+            .forEach(tag => {
+
+                if (tag.trim()) {
+
+                    tagsHTML += `
+                        <span class="tag">
+                            ${tag}
+                        </span>
+                    `;
+
+                }
+
+            });
+
+    }
+
+
+    /* Arquivos */
+
+    let mediaHTML = "";
+
+
+    for (const file of files) {
+
+        const url =
+            URL.createObjectURL(file);
+
+
+        if (file.type.startsWith("image/")) {
+
+            mediaHTML += `
+                <img
+                    class="post-media"
+                    src="${url}">
+            `;
+
+        }
+
+
+        if (file.type.startsWith("video/")) {
+
+            mediaHTML += `
+                <video
+                    class="post-media"
+                    controls
+                    src="${url}">
+                </video>
+            `;
+
+        }
+
+    }
+
+
+    post.innerHTML = `
+
+        <div class="post-header">
+
+            <div class="post-avatar">
+                GS
+            </div>
+
+            <div>
+
+                <div class="post-user">
+                    Gustavo
+                </div>
+
+                <div class="post-time">
+                    agora
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="post-content">
+
+            <h2 class="post-title">
+                ${title}
+            </h2>
+
+            <p class="post-description">
+                ${description}
+            </p>
+
+            <div class="tags">
+                ${tagsHTML}
+            </div>
+
+            ${mediaHTML}
+
+        </div>
+
+
+        <div class="post-actions">
+
+            <button class="action">
+                ❤️ 0
+            </button>
+
+            <button class="action">
+                💬 0
+            </button>
+
+            <button class="action">
+                🔗 Compartilhar
+            </button>
+
+        </div>
+
+    `;
+
+
+    /* Coloca o novo post no topo */
+
+    const content =
+        document.querySelector(".content");
+
+    const createBox =
+        document.querySelector(".create-box");
+
+    content.insertBefore(
+        post,
+        createBox.nextSibling
+    );
+
+
+    /* Limpar formulário */
+
+    document.getElementById("postTitle").value = "";
+
+    document.getElementById("postDescription").value = "";
+
+    document.getElementById("postTags").value = "";
+
+    document.getElementById("postFiles").value = "";
+
+
+    /* Fechar */
+
+    postModal.classList.remove("active");
+
+});
+
+
+/* =========================
+   CLICAR FORA DOS MENUS
+========================= */
+
+document.addEventListener("click", function(event) {
+
+    if (
+        !sideMenu.contains(event.target) &&
+        !menuButton.contains(event.target)
+    ) {
+
+        sideMenu.classList.remove("active");
+
+    }
+
+
+    if (
+        !profileMenu.contains(event.target) &&
+        !profileButton.contains(event.target)
+    ) {
+
+        profileMenu.classList.remove("active");
+
+    }
+
+
+    if (
+        !notificationPanel.contains(event.target) &&
+        !notificationButton.contains(event.target)
+    ) {
+
+        notificationPanel.classList.remove("active");
+
+    }
+
+});
+
+/* =========================
+   ALTERAR NICKNAME
+========================= */
+
+const editNickname =
+    document.getElementById("editNickname");
+
+const nickname =
+    document.getElementById("nickname");
+
+
+editNickname.addEventListener("click", function(event) {
+
+    event.stopPropagation();
+
+    const novoNickname =
+        prompt(
+            "Digite seu novo nickname:",
+            nickname.textContent.trim()
+        );
+
+    if (
+        novoNickname !== null &&
+        novoNickname.trim() !== ""
+    ) {
+
+        nickname.textContent =
+            novoNickname.trim();
+
+    }
+
+});
+
+</script>
+
 </body>
+
 </html>
