@@ -997,7 +997,9 @@
 
             </div>
 
-            <img src="" alt="">
+            <img src="Fallen-IEM-2018.jpg alt="
+            class="post-media"
+            alt="professor">
         </div>
 
 
@@ -1018,6 +1020,10 @@
         </div>
 
     </article>
+
+    <div class="end-posts">
+        <span>Você chegou ao fim</span>
+    </div>
 
 
 </main>
@@ -1519,6 +1525,29 @@ editNickname.addEventListener("click", function(event) {
 
 });
 
+.end-posts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 40px 0 60px;
+
+    color: #666;
+
+    font-size: 13px;
+}
+
+.end-posts::Before
+.end-posts::after {
+    content: "";
+
+    width: 100px;
+    height: 1px;
+
+    background: #292d35;
+
+    margin: 0 15px;
+}
 </script>
 
 </body>
